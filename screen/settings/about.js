@@ -91,27 +91,24 @@ const About = () => {
   };
 
   const handleOnTwitterPress = () => {
-    Linking.openURL('https://twitter.com/bluewalletio');
+    Linking.openURL('https://twitter.com/bitflate');
   };
 
   const handleOnDiscordPress = () => {
-    Linking.openURL('https://discord.gg/btWq2Aby2z');
+    Linking.openURL('https://discord.gg/utnEyp8');
   };
 
-  const handleOnTelegramPress = () => {
-    Linking.openURL('https://t.me/bluewallethat');
-  };
   const handleOnGithubPress = () => {
-    Linking.openURL('https://github.com/BlueWallet/BlueWallet');
+    Linking.openURL('https://github.com/bitflate/BlueWallet');
   };
   const handleOnRatePress = () => {
     const options = {
-      AppleAppID: '1376878040',
+      AppleAppID: '1376878040', // TODO: Change me
       GooglePackageName: 'org.bitflate.app',
       preferredAndroidMarket: AndroidMarket.Google,
       preferInApp: Platform.OS !== 'android',
       openAppStoreIfInAppFails: true,
-      fallbackPlatformURL: 'https://bluewallet.io',
+      fallbackPlatformURL: 'https://bitflate.org',
     };
     Rate.rate(options, success => {
       if (success) {
@@ -140,15 +137,6 @@ const About = () => {
         }}
         onPress={handleOnTwitterPress}
         title={loc.settings.about_sm_twitter}
-      />
-      <BlueListItem
-        leftIcon={{
-          name: 'telegram',
-          type: 'font-awesome',
-          color: '#0088cc',
-        }}
-        onPress={handleOnTelegramPress}
-        title={loc.settings.about_sm_telegram}
       />
       <BlueListItem
         leftIcon={{

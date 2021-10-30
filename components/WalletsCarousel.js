@@ -182,7 +182,7 @@ const WalletCarouselItem = ({ item, index, onPress, handleLongPress, isSelectedW
       image = I18nManager.isRTL ? require('../img/vault-shape-rtl.png') : require('../img/vault-shape.png');
       break;
     default:
-      image = I18nManager.isRTL ? require('../img/btc-shape-rtl.png') : require('../img/btc-shape.png');
+      image = I18nManager.isRTL ? require('../img/bfl-shape-rtl.png') : require('../img/bfl-shape.png');
   }
 
   const latestTransactionText =

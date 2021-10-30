@@ -119,7 +119,7 @@ export const BitcoinButton = props => {
     <TouchableOpacity accessibilityRole="button" testID={props.testID} onPress={props.onPress}>
       <View
         style={{
-          borderColor: (props.active && colors.newBlue) || colors.buttonDisabledBackgroundColor,
+          borderColor: (props.active && colors.bflBlue) || colors.buttonDisabledBackgroundColor,
           borderWidth: 1.5,
           borderRadius: 8,
           backgroundColor: colors.buttonDisabledBackgroundColor,
@@ -132,10 +132,10 @@ export const BitcoinButton = props => {
       >
         <View style={{ marginHorizontal: 16, marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}>
           <View>
-            <Image style={{ width: 34, height: 34, marginRight: 8 }} source={require('./img/addWallet/bitcoin.png')} />
+            <Image style={{ width: 34, height: 34, marginRight: 8 }} source={require('./img/addWallet/bitflate.png')} />
           </View>
           <View>
-            <Text style={{ color: colors.newBlue, fontWeight: 'bold', fontSize: 18, writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' }}>
+            <Text style={{ color: colors.bflBlue, fontWeight: 'bold', fontSize: 18, writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' }}>
               {loc.wallets.add_bitcoin}
             </Text>
             <Text

@@ -9,11 +9,11 @@ const WalletToImport = ({ title, subtitle, active, onPress }) => {
 
   const stylesHooks = StyleSheet.create({
     root: {
-      borderColor: active ? colors.newBlue : colors.buttonDisabledBackgroundColor,
+      borderColor: active ? colors.bflBlue : colors.buttonDisabledBackgroundColor,
       backgroundColor: colors.buttonDisabledBackgroundColor,
     },
     title: {
-      color: colors.newBlue,
+      color: colors.bflBlue,
       writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
     },
     subtitle: {

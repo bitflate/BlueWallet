@@ -29,7 +29,9 @@ function Notifications(props) {
     return false;
   };
 
-  Notifications.isNotificationsCapable = hasGmsSync() || hasHmsSync() || Platform.OS !== 'android';
+  // Disable notifications, currently not supported for BFL
+  // Notifications.isNotificationsCapable = hasGmsSync() || hasHmsSync() || Platform.OS !== 'android';
+  Notifications.isNotificationsCapable = false;
   /**
    * Calls `configure`, which tries to obtain push token, save it, and registers all associated with
    * notifications callbacks

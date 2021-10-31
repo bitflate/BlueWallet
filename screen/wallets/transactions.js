@@ -817,7 +817,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   buyBitcoin: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#45818E',
     minWidth: 260,
     borderRadius: 8,
     alignSelf: 'center',

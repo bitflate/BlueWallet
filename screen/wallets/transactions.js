@@ -291,6 +291,10 @@ const WalletTransactions = () => {
     BuyBitcoin.navigate(wallet);
   };
 
+  const navigateToBuyBitflate = () => {
+    Linking.openURL('https://www.unnamed.exchange/Exchange?market=BFL_BTC');
+  };
+
   const renderMarketplaceButton = () => {
     return (
       wallet.chain === Chain.OFFCHAIN &&
@@ -354,7 +358,7 @@ const WalletTransactions = () => {
     return (
       <TouchableOpacity
         accessibilityRole="button"
-        onPress={navigateToBuyBitcoin}
+        onPress={navigateToBuyBitflate}
         style={[styles.marketplaceButton2, stylesHook.marketplaceButton2]}
       >
         <Text style={[styles.marketpalceText1, stylesHook.marketpalceText1]}>{loc.wallets.list_tap_here_to_buy}</Text>
@@ -552,7 +556,7 @@ const WalletTransactions = () => {
         });
       }
     } else if (id === TransactionsNavigationHeader.actionKeys.RefillWithBank) {
-      navigateToBuyBitcoin();
+      navigateToBuyBitflate();
     }
   };
 
@@ -620,7 +624,7 @@ const WalletTransactions = () => {
               {isLightning() && <Text style={styles.emptyTxsLightning}>{loc.wallets.list_empty_txs2_lightning}</Text>}
 
               {!isLightning() && (
-                <TouchableOpacity onPress={navigateToBuyBitcoin} style={styles.buyBitcoin} accessibilityRole="button">
+                <TouchableOpacity onPress={navigateToBuyBitflate} style={styles.buyBitcoin} accessibilityRole="button">
                   <Text testID="NoTxBuyBitcoin" style={styles.buyBitcoinText}>
                     {loc.wallets.list_tap_here_to_buy}
                   </Text>

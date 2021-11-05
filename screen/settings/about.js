@@ -124,9 +124,6 @@ const About = () => {
           <Image style={styles.logo} source={require('../../img/bluebeast.png')} />
           <Text style={styles.textFree}>{loc.settings.about_free}</Text>
           <Text style={styles.textBackup}>{formatStringAddTwoWhiteSpaces(loc.settings.about_backup)}</Text>
-          {((Platform.OS === 'android' && hasGmsSync()) || Platform.OS !== 'android') && (
-            <BlueButton onPress={handleOnRatePress} title={loc.settings.about_review + ' ⭐🙏'} />
-          )}
         </View>
       </BlueCard>
       <BlueListItem

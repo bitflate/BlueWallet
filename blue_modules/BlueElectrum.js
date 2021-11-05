@@ -47,9 +47,11 @@ async function _getRealm() {
 }
 
 const storageKey = 'ELECTRUM_PEERS';
-const defaultPeer = { host: '161.97.94.190', ssl: '50002' };
+const defaultPeer = { host: 'electrumx1.bitflate.org', ssl: '50002' };
 const hardcodedPeers = [
-  { host: '161.97.94.190', ssl: '50002' }
+  { host: 'electrumx1.bitflate.org', ssl: '50002' },
+  { host: 'electrumx2.bitflate.org', ssl: '50002' },
+  { host: 'electrumx3.bitflate.org', ssl: '50002' }
 ];
 
 /** @type {ElectrumClient} */

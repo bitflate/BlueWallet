@@ -47,13 +47,11 @@ async function _getRealm() {
 }
 
 const storageKey = 'ELECTRUM_PEERS';
-const defaultPeer = { host: 'electrum1.bluewallet.io', ssl: '443' };
+const defaultPeer = { host: 'electrumx1.bitflate.org', ssl: '50002' };
 const hardcodedPeers = [
-  { host: 'electrum1.bluewallet.io', ssl: '443' },
-  { host: 'electrum2.bluewallet.io', ssl: '443' },
-  { host: 'electrum.emzy.de', ssl: '50002' },
-  { host: 'electrum.acinq.co', ssl: '50002' },
-  { host: 'electrum.bitaroo.net', ssl: '50002' },
+  { host: 'electrumx1.bitflate.org', ssl: '50002' },
+  { host: 'electrumx2.bitflate.org', ssl: '50002' },
+  { host: 'electrumx3.bitflate.org', ssl: '50002' }
 ];
 
 /** @type {ElectrumClient} */
@@ -100,7 +98,7 @@ async function connectMain() {
     usingPeer = savedPeer;
   }
 
-  await DefaultPreference.setName('group.io.bluewallet.bluewallet');
+  await DefaultPreference.setName('group.org.bitflate.app');
   try {
     if (usingPeer.host.endsWith('onion')) {
       const randomPeer = await getCurrentPeer();
@@ -222,7 +220,7 @@ async function presentNetworkErrorAlert(usingPeer) {
                   await AsyncStorage.setItem(ELECTRUM_TCP_PORT, '');
                   await AsyncStorage.setItem(ELECTRUM_SSL_PORT, '');
                   try {
-                    await DefaultPreference.setName('group.io.bluewallet.bluewallet');
+                    await DefaultPreference.setName('group.org.bitflate.app');
                     await DefaultPreference.clear(ELECTRUM_HOST);
                     await DefaultPreference.clear(ELECTRUM_SSL_PORT);
                     await DefaultPreference.clear(ELECTRUM_TCP_PORT);

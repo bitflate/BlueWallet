@@ -110,7 +110,7 @@ const TransactionsDetails = () => {
   };
 
   const handleOnOpenTransactionOnBlockExporerTapped = () => {
-    const url = `https://mempool.space/tx/${tx.hash}`;
+    const url = `https://explorer.bitflate.org/tx/${tx.hash}`;
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url);
@@ -119,7 +119,7 @@ const TransactionsDetails = () => {
   };
 
   const handleCopyPress = () => {
-    Clipboard.setString(`https://mempool.space/tx/${tx.hash}`);
+    Clipboard.setString(`https://explorer.bitflate.org/tx/${tx.hash}`);
   };
 
   if (isLoading || !tx) {
@@ -131,7 +131,7 @@ const TransactionsDetails = () => {
       <HandoffComponent
         title={loc.transactions.details_title}
         type={HandoffComponent.activityTypes.ViewInBlockExplorer}
-        url={`https://mempool.space/tx/${tx.hash}`}
+        url={`https://explorer.bitflate.org/tx/${tx.hash}`}
       />
       <StatusBar barStyle="default" />
       <BlueCard>
@@ -169,7 +169,7 @@ const TransactionsDetails = () => {
         {tx.fee && (
           <>
             <BlueText style={styles.rowCaption}>{loc.send.create_fee}</BlueText>
-            <BlueText style={styles.rowValue}>{tx.fee + ' sats'}</BlueText>
+            <BlueText style={styles.rowValue}>{tx.fee + ' flates'}</BlueText>
           </>
         )}
 

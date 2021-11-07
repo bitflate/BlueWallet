@@ -371,7 +371,7 @@ const TransactionsStatus = () => {
       <HandoffComponent
         title={loc.transactions.details_title}
         type={HandoffComponent.activityTypes.ViewInBlockExplorer}
-        url={`https://mempool.space/tx/${tx.hash}`}
+        url={`https://explorer.bitflate.org/tx/${tx.hash}`}
       />
 
       <StatusBar barStyle="default" />

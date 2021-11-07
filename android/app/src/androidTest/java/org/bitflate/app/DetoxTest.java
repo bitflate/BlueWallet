@@ -1,4 +1,4 @@
-package io.bluewallet.bluewallet;
+package org.bitflate.app;
 
 import com.wix.detox.Detox;
 

@@ -135,7 +135,7 @@ const ReorderWallets = () => {
                 case MultisigHDWallet.type:
                   return I18nManager.isRTL ? require('../../img/vault-shape-rtl.png') : require('../../img/vault-shape.png');
                 default:
-                  return I18nManager.isRTL ? require('../../img/btc-shape-rtl.png') : require('../../img/btc-shape.png');
+                  return I18nManager.isRTL ? require('../../img/bfl-shape-rtl.png') : require('../../img/bfl-shape.png');
               }
             })()}
             style={styles.image}

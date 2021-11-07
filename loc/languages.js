@@ -1,5 +1,6 @@
 export const AvailableLanguages = Object.freeze([
   { label: 'English', value: 'en' },
+  /*
   { label: 'Afrikaans (AFR)', value: 'zar_afr' },
   { label: 'العربية (AR)', value: 'ar', isRTL: true },
   { label: 'Български (BG)', value: 'bg_bg' },
@@ -10,7 +11,9 @@ export const AvailableLanguages = Object.freeze([
   { label: 'Cymraeg (CY)', value: 'cy' },
   { label: 'Česky (CZ)', value: 'cs_cz' },
   { label: 'Danish (DK)', value: 'da_dk' },
+  */
   { label: 'Deutsch (DE)', value: 'de_de' },
+  /*
   { label: 'Español (Spain) (es_ES)', value: 'es' },
   { label: 'Español (Latin America) (es_419)', value: 'es_419' },
   { label: 'Ελληνικά (EL)', value: 'el' },
@@ -40,4 +43,5 @@ export const AvailableLanguages = Object.freeze([
   { label: 'Українська (UA)', value: 'ua' },
   { label: 'Türkçe (TR)', value: 'tr_tr' },
   { label: 'Xhosa (XHO)', value: 'zar_xho' },
+  */
 ]);

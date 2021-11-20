@@ -117,11 +117,16 @@ const About = () => {
     });
   };
 
+  const walletLogoStyle = {
+    width: 128,
+    height: 128,
+  };
+
   return (
     <ScrollView testID="AboutScrollView" contentInsetAdjustmentBehavior="automatic">
       <BlueCard>
         <View style={styles.center}>
-          <Image style={styles.logo} source={require('../../img/bluebeast.png')} />
+          <Image style={walletLogoStyle} source={require('../../img/bitflate_wallet.png')} />
           <Text style={styles.textFree}>{loc.settings.about_free}</Text>
           <Text style={styles.textBackup}>{formatStringAddTwoWhiteSpaces(loc.settings.about_backup)}</Text>
         </View>

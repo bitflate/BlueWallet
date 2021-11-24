@@ -57,7 +57,7 @@ const QRCodeComponent = ({
   const renderQRCode = (
     <QRCode
       value={value}
-      {...(isLogoRendered ? { logo: require('../img/qr-code.png') } : {})}
+      {...(isLogoRendered ? { logo: require('../img/bitflate-qr-code.png') } : {})}
       size={size}
       logoSize={logoSize}
       color="#000000"

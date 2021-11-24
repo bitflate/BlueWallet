@@ -101,7 +101,7 @@ describe('BlueWallet UI Tests - import BIP84 wallet', () => {
       await sleep(1000);
     }
 
-    const bip21 = 'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.00015&pj=https://btc.donate.kukks.org/BTC/pj';
+    const bip21 = 'bitflate:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.00015&pj=https://btc.donate.kukks.org/BTC/pj';
     await element(by.id('scanQrBackdoorInput')).replaceText(bip21);
     await element(by.id('scanQrBackdoorOkButton')).tap();
 
@@ -356,7 +356,7 @@ describe('BlueWallet UI Tests - import BIP84 wallet', () => {
 
     await device.launchApp({
       newInstance: true,
-      url: 'bitcoin:BC1QH6TF004TY7Z7UN2V5NTU4MKF630545GVHS45U7\\?amount=0.0001\\&label=Yo',
+      url: 'bitflate:BC1QH6TF004TY7Z7UN2V5NTU4MKF630545GVHS45U7\\?amount=0.0001\\&label=Yo',
     });
 
     // setting fee rate:

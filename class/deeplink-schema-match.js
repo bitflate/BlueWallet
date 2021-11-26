@@ -14,11 +14,7 @@ class DeeplinkSchemaMatch {
     const lowercaseString = schemaString.trim().toLowerCase();
     return (
       lowercaseString.startsWith('bitflate:') ||
-      lowercaseString.startsWith('lightning:') ||
-      lowercaseString.startsWith('blue:') ||
-      lowercaseString.startsWith('bluewallet:') ||
-      lowercaseString.startsWith('lapp:') ||
-      lowercaseString.startsWith('aopp:')
+      lowercaseString.startsWith('bflwallet:')
     );
   }
 
@@ -38,10 +34,10 @@ class DeeplinkSchemaMatch {
       return;
     }
 
-    if (event.url.toLowerCase().startsWith('bluewallet:bitflate:') || event.url.toLowerCase().startsWith('bluewallet:lightning:')) {
-      event.url = event.url.substring(11);
-    } else if (event.url.toLocaleLowerCase().startsWith('bluewallet://widget?action=')) {
-      event.url = event.url.substring('bluewallet://'.length);
+    if (event.url.toLowerCase().startsWith('bflwallet:bitflate:')) {
+      event.url = event.url.substring(10);
+    } else if (event.url.toLocaleLowerCase().startsWith('bflwallet://widget?action=')) {
+      event.url = event.url.substring('bflwallet://'.length);
     }
 
     if (DeeplinkSchemaMatch.isWidgetAction(event.url)) {
@@ -206,90 +202,14 @@ class DeeplinkSchemaMatch {
     } else {
       const urlObject = url.parse(event.url, true); // eslint-disable-line node/no-deprecated-api
       (async () => {
-        if (urlObject.protocol === 'aopp:') {
-          completionHandler([
-            'AOPPRoot',
-            {
-              screen: 'AOPP',
-              params: { uri: event.url },
-            },
-          ]);
-        } else if (urlObject.protocol === 'bluewallet:' || urlObject.protocol === 'lapp:' || urlObject.protocol === 'blue:') {
-          switch (urlObject.host) {
-            case 'openlappbrowser': {
-              console.log('opening LAPP', urlObject.query.url);
-              // searching for LN wallet:
-              let haveLnWallet = false;
-              for (const w of context.wallets) {
-                if (w.type === LightningCustodianWallet.type) {
-                  haveLnWallet = true;
-                }
-              }
-
-              if (!haveLnWallet) {
-                // need to create one
-                const w = new LightningCustodianWallet();
-                w.setLabel(w.typeReadable);
-
-                try {
-                  const lndhub = await AsyncStorage.getItem(AppStorage.LNDHUB);
-                  if (lndhub) {
-                    w.setBaseURI(lndhub);
-                    w.init();
-                  }
-                  await w.createAccount();
-                  await w.authorize();
-                } catch (Err) {
-                  // giving up, not doing anything
-                  return;
-                }
-                context.addWallet(w);
-                context.saveToDisk();
-              }
-
-              // now, opening lapp browser and navigating it to URL.
-              // looking for a LN wallet:
-              let lnWallet;
-              for (const w of context.wallets) {
-                if (w.type === LightningCustodianWallet.type) {
-                  lnWallet = w;
-                  break;
-                }
-              }
-
-              if (!lnWallet) {
-                // something went wrong
-                return;
-              }
-
-              completionHandler([
-                'LappBrowserRoot',
-                {
-                  screen: 'LappBrowser',
-                  params: {
-                    walletID: lnWallet.getID(),
-                    url: urlObject.query.url,
-                  },
-                },
-              ]);
-              break;
-            }
-            case 'setelectrumserver':
-              completionHandler([
-                'ElectrumSettings',
-                {
-                  server: DeeplinkSchemaMatch.getServerFromSetElectrumServerAction(event.url),
-                },
-              ]);
-              break;
-            case 'setlndhuburl':
-              completionHandler([
-                'LightningSettings',
-                {
-                  url: DeeplinkSchemaMatch.getUrlFromSetLndhubUrlAction(event.url),
-                },
-              ]);
-              break;
+        if (urlObject.protocol === 'bflwallet:') {
+          if (urlObject.host === 'setelectrumserver') {
+            completionHandler([
+              'ElectrumSettings',
+              {
+                server: DeeplinkSchemaMatch.getServerFromSetElectrumServerAction(event.url),
+              },
+            ]);
           }
         }
       })();
@@ -297,28 +217,28 @@ class DeeplinkSchemaMatch {
   }
 
   /**
-   * Extracts server from a deeplink like `bluewallet:setelectrumserver?server=electrum1.bluewallet.io%3A443%3As`
+   * Extracts server from a deeplink like `bflwallet:setelectrumserver?server=electrum1.bluewallet.io%3A443%3As`
    * returns FALSE if none found
    *
    * @param url {string}
    * @return {string|boolean}
    */
   static getServerFromSetElectrumServerAction(url) {
-    if (!url.startsWith('bluewallet:setelectrumserver') && !url.startsWith('setelectrumserver')) return false;
+    if (!url.startsWith('bflwallet:setelectrumserver') && !url.startsWith('setelectrumserver')) return false;
     const splt = url.split('server=');
     if (splt[1]) return decodeURIComponent(splt[1]);
     return false;
   }
 
   /**
-   * Extracts url from a deeplink like `bluewallet:setlndhuburl?url=https%3A%2F%2Flndhub.herokuapp.com`
+   * Extracts url from a deeplink like `bflwallet:setlndhuburl?url=https%3A%2F%2Flndhub.herokuapp.com`
    * returns FALSE if none found
    *
    * @param url {string}
    * @return {string|boolean}
    */
   static getUrlFromSetLndhubUrlAction(url) {
-    if (!url.startsWith('bluewallet:setlndhuburl') && !url.startsWith('setlndhuburl')) return false;
+    if (!url.startsWith('bflwallet:setlndhuburl') && !url.startsWith('setlndhuburl')) return false;
     const splt = url.split('url=');
     if (splt[1]) return decodeURIComponent(splt[1]);
     return false;
@@ -407,7 +327,7 @@ class DeeplinkSchemaMatch {
 
   static isBothBitcoinAndLightning(url) {
     if (url.includes('lightning') && (url.includes('bitflate') || url.includes('BITFLATE'))) {
-      const txInfo = url.split(/(bitflate:|BITFLATE:|lightning:|lightning=|bitcoin=)+/);
+      const txInfo = url.split(/(bitflate:|BITFLATE:|lightning:|lightning=|bitflate=)+/);
       let bitcoin;
       let lndInvoice;
       for (const [index, value] of txInfo.entries()) {
@@ -441,8 +361,8 @@ class DeeplinkSchemaMatch {
   }
 
   static bip21decode(uri) {
-    if (!uri) return {};
-    return bip21.decode(uri.replace('BITFLATE:', 'bitflate:'));
+    if (!uri || uri.startsWith('bitcoin')) return {};
+    return bip21.decode(uri.replace('BITFLATE:', 'bitflate:'), 'bitflate');
   }
 
   static bip21encode() {

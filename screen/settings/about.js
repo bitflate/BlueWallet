@@ -126,7 +126,7 @@ const About = () => {
     <ScrollView testID="AboutScrollView" contentInsetAdjustmentBehavior="automatic">
       <BlueCard>
         <View style={styles.center}>
-          <Image style={walletLogoStyle} source={require('../../img/bitflate_wallet.png')} />
+          <Image style={walletLogoStyle} source={require('../../img/bitflate-wallet-logo.png')} />
           <Text style={styles.textFree}>{loc.settings.about_free}</Text>
           <Text style={styles.textBackup}>{formatStringAddTwoWhiteSpaces(loc.settings.about_backup)}</Text>
         </View>
